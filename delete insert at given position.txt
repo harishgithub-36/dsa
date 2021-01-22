@@ -1,0 +1,117 @@
+ import java.util.Scanner;
+ class Node{
+        int data;
+        Node next;   
+        Node(int data)
+        {
+            this.data=data;
+        }
+        
+    }
+    
+class Main{
+    public static Node add(Node head,int data)
+    {
+        Node nn =new Node(data);
+        nn.next=head;
+        head=nn;
+        return head;
+    }
+    public static void display(Node head)
+    {
+        Node temp=head;
+        
+        while(temp!=null)
+        {
+            System.out.print(temp.data+" ");
+            temp=temp.next;
+        }
+        System.out.println();
+    }
+    public static Node delete(Node head,int pos)
+    {
+        int c=1;
+        int found=0;
+        int length=0;
+        Node temp=head;
+        while(temp!=null)
+        {
+            length++;
+            temp=temp.next;
+        }
+        if(pos>=0&&pos<length)
+        found=1;
+       // System.out.println(length);
+        temp=head;
+        
+        if(pos==0&&found==1)
+        head=head.next;
+        else if(found==1)
+        {
+        while(temp!=null&&c<pos)
+        {
+            temp=temp.next;
+            c++;
+        }
+        Node t1=temp.next;
+        temp.next=t1.next;
+        }
+        
+        return head;
+    }
+    public static Node insert(Node head,int data,int pos1)
+    {
+   
+        Node nn =new Node(data);
+             Node temp=head;
+        int c=1;
+        if(pos1==0)
+        {
+            head=add(head,data);
+                temp=head;
+        }
+        else{
+            while(temp.next!=null&&c<pos1)
+            {
+                temp=temp.next;
+                c++;
+            }
+            nn.next=temp.next;
+            temp.next=nn;
+        }
+        return head;
+    }
+    public static void sum(Node head)
+    {
+        Node temp=head;
+        int sum=0;
+        while(temp!=null)
+        {
+            sum+=temp.data;
+            temp=temp.next;
+        }
+        System.out.println(sum);
+    }
+   public static void main(String args[])
+   {
+       Node head=null;
+       head=add(head,10);
+       head=add(head,20);
+       head=add(head,5);
+       System.out.println("Sum of all elements");
+       sum(head);
+       System.out.println("Default Linked list");
+       display(head);
+       Scanner s=new Scanner(System.in);
+       System.out.println("Please enter the position");
+      int pos=s.nextInt();
+      head=delete(head,pos);
+      System.out.println("Enter element to be inserted");
+      int ele=s.nextInt();
+      System.out.println("Please speccify the positon");
+      int pos1=s.nextInt();
+      head=insert(head,ele,pos1);
+      System.out.println("Resultant linked list");
+    display(head);
+   }
+}

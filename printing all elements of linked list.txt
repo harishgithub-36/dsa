@@ -1,0 +1,37 @@
+#include <stdio.h>
+struct node{
+int data;
+struct node *next;
+};
+struct node* initialize(struct node *s,int data){
+  s=(struct node *)malloc(sizeof(struct node));
+  s->data=data;
+  s->next=NULL;
+  return s;
+}
+void add(struct node *s,int data){
+    struct node *n;
+    n=initialize(s,data);
+    while(s->next!=0){
+    s=s->next;
+  }
+  s->next=n; 
+}
+void traverse(struct node *s){
+  int count=0;
+  while(s!=0){
+    printf("%d",s->data);
+    s=s->next;
+    count++;
+  }
+}
+int main(){
+  struct node *n=0;
+  n=initialize(n,23);
+  add(n,20);
+  add(n,78);
+  add(n,45);
+  add(n,98);
+  traverse(n);
+  free(n);
+}

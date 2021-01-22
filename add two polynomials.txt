@@ -1,0 +1,131 @@
+
+import java.util.*; 
+class Main
+{ 
+  
+// Node structure containing powerer  
+// and coefficient of variable  
+static class Node {  
+    int coeff, power;  
+    Node next;  
+};  
+  
+// Function add a new node at the end of list  
+static Node addnode(Node start, int coeff, int power)  
+{  
+    // Create a new node  
+    Node newnode = new Node();  
+    newnode.coeff = coeff;  
+    newnode.power = power;  
+    newnode.next = null;  
+  
+    // If linked list is empty  
+    if (start == null)  
+        return newnode;  
+  
+    // If linked list has nodes  
+    Node ptr = start;  
+    while (ptr.next != null)  
+        ptr = ptr.next;  
+    ptr.next = newnode;  
+  
+    return start;  
+}  
+  
+// Functionn To Display The Linked list  
+static void printList( Node ptr)  
+{  
+    while (ptr.next != null) {  
+        System.out.print( ptr.coeff + "x^" + ptr.power + " + ");  
+  
+        ptr = ptr.next;  
+    }  
+    System.out.print( ptr.coeff  +"\n");  
+}  
+  
+// Function to add coefficients of  
+// two elements having same powerer  
+
+// Function two Multiply two polynomial Numbers  
+static Node add(Node poly1, Node poly2,  
+            Node poly3)  
+{ 
+    Node temp=poly3;
+    while(poly1.next!=null&&poly2.next!=null)
+    {
+  if(poly1.power>poly2.power)
+  {
+      poly3.power=poly1.power;
+      poly3.coeff=poly1.coeff;
+      poly1=poly1.next;
+  }
+  else if(poly2.power>poly1.power)
+  {
+      poly3.power=poly2.power;
+      poly3.coeff=poly2.coeff;
+      poly2=poly2.next;
+  }
+  else{
+      poly3.coeff=poly1.coeff+poly2.coeff;
+      poly3.power=poly1.power;
+      poly1=poly1.next;
+      poly2=poly2.next;
+  }
+  poly3.next=new Node();
+  poly3=poly3.next;
+  poly3.next=null;
+}
+
+while(poly1.next!=null||poly2.next!=null)
+{
+    if(poly1.next!=null)
+    {
+        poly3.power=poly1.power;
+        poly3.coeff=poly1.coeff;
+        poly1=poly1.next;
+    }
+    if(poly2.next!=null)
+    {
+        poly3.power=poly2.power;
+        poly3.coeff=poly2.coeff;
+        poly2=poly2.next;
+    }
+    poly3.next=new Node();
+    poly3=poly3.next;
+    poly3.next=null;
+}
+return temp;
+}
+// Driver Code  
+public static void main(String args[])  
+{  
+  
+    Node poly1 = null, poly2 = null, poly3 = null;  
+  
+    // Creation of 1st Polynomial: 3x^2 + 5x^1 + 6  
+    poly1 = addnode(poly1, 5, 2);  
+    poly1 = addnode(poly1, 4, 1);  
+    poly1 = addnode(poly1, 2, 0);  
+  
+    // Creation of 2nd polynomial: 6x^1 + 8  
+    poly2 = addnode(poly2, 5, 1);  
+    poly2 = addnode(poly2, 5, 0);  
+  
+    // Displaying 1st polynomial  
+    System.out.print("1st Polynomial:- ");  
+    printList(poly1);  
+  
+    // Displaying 2nd polynomial  
+    System.out.print("2nd Polynomial:- ");  
+    printList(poly2);  
+  
+    poly3=new Node();
+    // calling multiply function  
+    poly3=add(poly1, poly2, poly3);  
+  
+    // Displaying Resultant Polynomial  
+    System.out.print( "Resultant Polynomial:- ");  
+    printList(poly3);  
+}
+}  
+  

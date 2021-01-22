@@ -1,0 +1,75 @@
+#include <iostream>
+using namespace std;
+struct node{
+int data;
+struct node *next;
+};
+struct node* initialize(struct node *s,int data){
+  s=(struct node *)malloc(sizeof(struct node));
+  s->data=data;
+  s->next=NULL;
+  return s;
+}
+void add(struct node *s,int data){
+    struct node *n;
+    n=initialize(s,data);
+    while(s->next!=0){
+    s=s->next;
+  }
+  s->next=n; 
+}
+struct node* traverse(struct node *s,int data){
+   struct node *prev=0;
+   struct node *temp=0;
+   //to check if thereis only one node 
+   if(s->next==0){
+    //  if(data==s->data){
+    //   cout<<"Found";
+    //  }
+     return s;
+  }
+      if(data==s->data){
+    //   cout<<"Found";
+      return s;
+     }
+   struct node *ini=s;
+  while(s!=0){
+    if(data==s->data){
+    //   cout<<"found "<<endl;
+      if(s->next!=0){
+      temp =s;          //if neither a single node nor a last node  
+      prev->next=temp->next;
+      }
+      else{
+        temp=s;       //if last node
+        prev->next=0;
+      }
+    }
+    prev=s;
+    s=s->next;
+  }
+  //inserting in beginning 
+temp->next=ini;
+return temp;
+}
+int main(){
+  struct node *n=0;
+  n=initialize(n,1);
+  // add(n,1);
+   add(n,3);
+ 
+  // n=traverse(n,10);
+   add(n,10);
+  // add(n,2);
+  n=traverse(n,3);
+   n=traverse(n,10);
+
+  struct node *p=n;
+  while(p!=0){
+cout<<(p->data)<<endl;
+p=p->next;
+  }
+  // n=traverse(n,10);
+  free(n);
+
+}

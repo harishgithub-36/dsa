@@ -1,0 +1,84 @@
+/******************************************************************************
+
+                            Online C Compiler.
+                Code, Compile, Run and Debug C program online.
+Write your code in this editor and press "Run" button to compile and execute it.
+
+*******************************************************************************/
+DELETE NODE FROM ANY POSITION AND INSERT IT IN BEGINNING..
+#include <stdio.h>
+struct node{
+    int i;
+    struct node *next;
+};
+struct node *t1;
+int data=0;
+void add(struct node **head,int n)
+{
+    struct node *t=(struct node *)malloc(sizeof(struct node));
+    t->i=n;
+    t->next=*head;
+    *head=t;
+}
+void project(struct node *head,int j)
+{
+    struct node *t=head;
+    if(t->i!=j)
+    {
+   while(t->next->i!=j)
+   {
+       t=t->next;
+   }
+   
+   t1=t->next;
+   t->next=t1->next;
+    }
+    if(t->i==j)
+    {
+        t1=t;
+        head=head->next;
+    }
+//   t1->next=head;
+  head=t1;
+  data=t1->i;
+//   head=t1;
+//   free(t1);
+}
+void insert(struct node **head)
+{
+    struct node *t2=(struct node *)malloc(sizeof(struct node));
+    t2->i=t1->i;
+    t2->next=*head;
+    *head=t2;
+}
+void display(struct node *head)
+{
+    struct node *k=head;
+ if(k)
+ {
+     printf("%d ",k->i);
+     display(k->next);
+ }
+ 
+}
+int main()
+{
+// struct node *head=0;
+// head=(struct node*)malloc(sizeof(struct node));
+// add(head,20);
+// add(head,30);
+// add(head,50);
+// display(head);
+struct node *head=NULL;
+//   head=(struct node *)malloc(sizeof(struct node));
+
+  // node(n);
+  add(&head,20);
+  add(&head,78);
+  add(&head,45);
+  add(&head,98);
+   project(head,98);
+  insert(&head);
+   display(head);
+   
+}

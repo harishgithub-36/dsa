@@ -1,0 +1,41 @@
+import java.util.Scanner;
+
+public class Main {
+	
+	public static void main(String[] args) {
+		Scanner s = new Scanner(System.in);
+		String input = s.nextLine();
+		String output[] = solution.permutationOfString(input);
+		for(int i = 0; i < output.length; i++) {
+			System.out.println(output[i]);
+		}
+	}
+}
+ class solution{
+public static String [] permutationOfString(String in)
+{
+    if(in.length()==0)
+    {
+        String o[]={""};
+        return o;
+    }
+    String so[]=permutationOfString(in.substring(1));
+    String o[]=new String[in.length()*so.length];
+    int k=0;
+    for(int i=0;i<so.length;i++)
+    {
+        String currstring=so[i];
+        if(o.length==6)
+        System.out.print(currstring+" ");
+        for(int j=0;j<=currstring.length();j++)
+        {
+            o[k]=currstring.substring(0,j)+in.charAt(0)+currstring.substring(j);
+              k++;
+        }
+    }
+//     for(int i = 0; i < o.length; i++) {
+// 			System.out.print(o[i]+" ");
+// 		}
+    return o;
+}
+}

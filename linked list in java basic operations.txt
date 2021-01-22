@@ -1,0 +1,178 @@
+class Node 
+    { 
+        int data; 
+        Node next; 
+        Node(int d) 
+        { 
+            data = d; 
+            next = null; 
+        } 
+    }
+class Main
+{ 
+    Node head;  // head of list 
+  
+    /* Linked list Node*/
+  
+    /* Inserts a new Node at front of the list. */
+    public void push(int new_data) 
+    { 
+        /* 1 & 2: Allocate the Node & 
+                  Put in the data*/
+        Node new_node = new Node(new_data); 
+    new_node.next=head;
+    head=new_node;
+    } 
+  void deleteNode(int position)
+  {
+      Node t=head;
+    Node t1=head;
+      int count=1;
+      while(t!=null)
+      {
+          if(count==position-1)
+          {
+              t1=t.next;
+               t.next=t1.next;
+          }
+          t=t.next;
+          count++;
+      }
+  }
+  public void deleteNode1(int data)
+  {
+      Node t=head;
+      Node t1=head;
+      while(t.next.data!=data)
+      {
+          t=t.next;
+      }
+      t1=t.next;
+      t.next=t1.next;
+  }
+    /* Given a reference (pointer to pointer) to the head of a list 
+       and a position, deletes the node at the given position */
+    // void deleteNode(int position) 
+    // { 
+    //     // If linked list is empty 
+    //     if (head == null) 
+    //         return; 
+  
+    //     // Store head node 
+    //     Node temp = head; 
+  
+    //     // If head needs to be removed 
+    //     if (position == 0) 
+    //     { 
+    //         head = temp.next;   // Change head 
+    //         return; 
+    //     } 
+  
+    //     // Find previous node of the node to be deleted 
+    //     for (int i=0; temp!=null && i<position-1; i++) 
+    //         temp = temp.next; 
+  
+    //     // If position is more than number of nodes 
+    //     if (temp == null || temp.next == null) 
+    //         return; 
+  
+    //     // Node temp->next is the node to be deleted 
+    //     // Store pointer to the next of node to be deleted 
+    //     Node next = temp.next.next; 
+  
+    //     temp.next = next;  // Unlink the deleted node from list 
+    // } 
+  
+    /* This function prints contents of linked list starting from 
+        the given node */
+    public void printList() 
+    { 
+        Node tnode = head; 
+        while (tnode != null) 
+        { 
+            System.out.print(tnode.data+" "); 
+            tnode = tnode.next; 
+        } 
+    } 
+    
+  public void swap(int data)
+  {
+      Node t=head;
+      Node t1=head;
+     Node prev=head; 
+    //   while(t.next.next!=null)
+    //   {
+    //       t=t.next;
+    //   }
+    //   t1=t.next;
+    //   t1.next=head;
+    //   head=t1;
+    // t.next=null;
+    if(t.data==data)
+    {
+        return;
+    }
+    while(t!=null)
+    {
+        if(t.data==data)
+        {
+            if(t.next!=null)
+            {
+                t1=t;
+                prev.next=t1.next;
+            }
+            else{
+                t1=t;
+                prev.next=null;
+            }
+        }
+        prev=t;
+        t=t.next;
+        
+    }
+    t1.next=head;
+    head=t1;
+     System.out.println(t1.data);
+  }
+//   while(s!=0){
+//     if(data==s->data){
+//     //   cout<<"found "<<endl;
+//       if(s->next!=0){
+//       temp =s;          //if neither a single node nor a last node  
+//       prev->next=temp->next;
+//       }
+//       else{
+//         temp=s;       //if last node
+//         prev->next=0;
+//       }
+//     }
+//     prev=s;
+//     s=s->next;
+//   }
+    /* Drier program to test above functions. Ideally this function 
+       should be in a separate user class.  It is kept here to keep 
+       code compact */
+    public static void main(String[] args) 
+    { 
+        /* Start with the empty list */
+        Main llist = new Main(); 
+  
+        llist.push(7); 
+        llist.push(1); 
+        llist.push(3); 
+        llist.push(2); 
+        llist.push(8); 
+  
+        System.out.println("\nCreated Linked list is: "); 
+        llist.printList(); 
+  
+          llist.deleteNode(2);  // Delete node at position 4 
+  
+        llist.deleteNode1(3);         
+System.out.println("\nLinked List after Deletion at position 4: "); 
+        llist.printList(); 
+        System.out.println("After Swapping");
+        llist.swap(7);
+        llist.printList();
+    } 
+} 
